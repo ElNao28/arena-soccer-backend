@@ -1,5 +1,4 @@
 import { Liga } from 'src/liga/entities/liga.entity';
-import { Tournament } from 'src/tournament/entities/tournament.entity';
 import {
   Column,
   Entity,
@@ -17,6 +16,7 @@ export class Season {
   dateStart: Date;
   @Column()
   dateEnd: Date;
+  @Column()
   weeksDuration: number;
   @Column()
   numberTeams: number;

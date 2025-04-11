@@ -1,1 +1,4 @@
-export class CreateLigaDto {}
+export class CreateLigaDto {
+  name: string;
+  description: string;
+}

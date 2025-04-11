@@ -11,5 +11,5 @@ export class TournamentTeam {
   tournament: Tournament;
 
   @ManyToOne(() => Team, (team) => team.tournamentTeams)
-  team: Tournament;
+  team: Team;
 }

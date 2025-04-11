@@ -13,12 +13,6 @@ export class Game {
   title: string;
   @Column()
   schedule: Date;
-  @Column()
-  teamTwoId: number;
-  @Column()
-  jornadaID: number;
-  @Column()
-  statusId: number;
 
   @ManyToOne(() => Jornada, (jornada) => jornada.games)
   jornada: Jornada;

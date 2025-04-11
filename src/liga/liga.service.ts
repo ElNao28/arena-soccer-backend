@@ -1,11 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { CreateLigaDto } from './dto/create-liga.dto';
 import { UpdateLigaDto } from './dto/update-liga.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Liga } from './entities/liga.entity';
 
 @Injectable()
 export class LigaService {
+  constructor(
+    @InjectRepository(Liga) private readonly ligaRepository: Repository<Liga>,
+  ) {}
   create(createLigaDto: CreateLigaDto) {
-    return 'This action adds a new liga';
+    try {
+      const newLiga = this.ligaRepository.create(createLigaDto);
+      return this.ligaRepository.save(newLiga);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   findAll() {

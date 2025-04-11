@@ -11,7 +11,7 @@ export class Team {
   @Column({
     default: false,
   })
-  plating: boolean;
+  playing: boolean;
 
   @OneToMany(() => TournamentTeam, (tournamentTeam) => tournamentTeam.team)
   tournamentTeams: TournamentTeam[];

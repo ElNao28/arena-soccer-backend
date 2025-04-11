@@ -1,11 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSeasonDto } from './dto/create-season.dto';
 import { UpdateSeasonDto } from './dto/update-season.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Season } from './entities/season.entity';
+import { Repository } from 'typeorm';
+import { Liga } from '../liga/entities/liga.entity';
 
 @Injectable()
 export class SeasonService {
-  create(createSeasonDto: CreateSeasonDto) {
-    return 'This action adds a new season';
+  constructor(
+    @InjectRepository(Season)
+    private readonly seasonRepository: Repository<Season>,
+    @InjectRepository(Liga)
+    private readonly ligaRepository: Repository<Liga>,
+  ) {}
+  async create(createSeasonDto: CreateSeasonDto) {
+    const { idLiga, ...season } = createSeasonDto;
+    const foundLiga = await this.ligaRepository.findOne({
+      where: { id: idLiga },
+    });
+    const newSeason = this.seasonRepository.create({
+      liga:foundLiga,
+      ...season,
+    });
+    return this.seasonRepository.save(newSeason);
   }
 
   findAll() {
