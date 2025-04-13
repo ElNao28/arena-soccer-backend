@@ -8,9 +8,9 @@ export class Game {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  dayGame: Date;
-  @Column()
   title: string;
+  @Column()
+  dayGame: Date;
   @Column()
   schedule: Date;
 

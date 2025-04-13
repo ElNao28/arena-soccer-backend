@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LigaModule } from './liga/liga.module';
-import { SeasonModule } from './season/season.module';
 import { TournamentModule } from './tournament/tournament.module';
 import { CategoriesModule } from './categories/categories.module';
 import { StatusModule } from './status/status.module';
@@ -11,6 +10,13 @@ import { TeamsModule } from './teams/teams.module';
 import { GamesModule } from './games/games.module';
 import { TournamentTeamsModule } from './tournament-teams/tournament-teams.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
+import { SportModule } from './sport/sport.module';
+import { PlayerModule } from './player/player.module';
+import { PositionModule } from './position/position.module';
+import { CanchaModule } from './cancha/cancha.module';
+import { TypeTournamentModule } from './type-tournament/type-tournament.module';
+import { GroupModule } from './group/group.module';
 
 @Module({
   imports: [
@@ -25,7 +31,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
     LigaModule,
-    SeasonModule,
     TournamentModule,
     CategoriesModule,
     StatusModule,
@@ -33,6 +38,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TeamsModule,
     GamesModule,
     TournamentTeamsModule,
+    UsersModule,
+    SportModule,
+    PlayerModule,
+    PositionModule,
+    CanchaModule,
+    TypeTournamentModule,
+    GroupModule,
   ],
   controllers: [AppController],
   providers: [AppService],

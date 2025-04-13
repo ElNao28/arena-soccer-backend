@@ -1,17 +1,23 @@
 import { Tournament } from 'src/tournament/entities/tournament.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('categories')
-export class Category {
+@Entity('group')
+export class Group {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
   name: string;
+  @Column()
+  key: string;
   @Column({
-    default:''
+    name: 'time_game',
   })
-  code: string;
+  timeGame: number;
+  @Column({
+    name: 'day_week',
+  })
+  dayWeek: string;
 
-  @OneToMany(() => Tournament, (tournament) => tournament.category)
+  @OneToMany(() => Tournament, tournament => tournament.group)
   tournaments: Tournament[];
 }

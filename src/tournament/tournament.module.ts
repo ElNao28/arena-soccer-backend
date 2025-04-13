@@ -9,10 +9,9 @@ import { Team } from 'src/teams/entities/team.entity';
 import { Game } from 'src/games/entities/game.entity';
 import { Status } from 'src/status/entities/status.entity';
 import { Category } from 'src/categories/entities/category.entity';
-import { Season } from 'src/season/entities/season.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Tournament, Jornada, TournamentTeam, Team, Game, Status,Category, Season])],
+  imports: [TypeOrmModule.forFeature([Tournament, Jornada, TournamentTeam, Team, Game, Status,Category])],
   controllers: [TournamentController],
   providers: [TournamentService],
 })

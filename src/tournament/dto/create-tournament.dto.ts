@@ -3,7 +3,6 @@ export class CreateTournamentDto {
     limitRegister:Date;
     typeTournament:string;
     teams: number[];
-    seasonId:number;
     categoryId:number;
     statusId?:number;
 }

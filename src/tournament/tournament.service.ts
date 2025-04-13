@@ -9,7 +9,6 @@ import { TournamentTeam } from 'src/tournament-teams/entities/tournament-team.en
 import { Team } from 'src/teams/entities/team.entity';
 import { Game } from 'src/games/entities/game.entity';
 import { Category } from 'src/categories/entities/category.entity';
-import { Season } from 'src/season/entities/season.entity';
 import { Status } from 'src/status/entities/status.entity';
 
 @Injectable()
@@ -27,28 +26,22 @@ export class TournamentService {
     private readonly gameRepository: Repository<Game>,
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>,
-    @InjectRepository(Season)
-    private readonly seasonRepository: Repository<Season>,
     @InjectRepository(Status)
     private readonly statusRepository: Repository<Status>,
   ) {}
   async create(createTournamentDto: CreateTournamentDto) {
-    const { categoryId, seasonId, teams, ...tournament } = createTournamentDto;
+    const { categoryId, teams, ...tournament } = createTournamentDto;
     const foundCategory = await this.categoryRepository.findOne({
       where: { id: categoryId },
-    });
-    const foundSeason = await this.seasonRepository.findOne({
-      where: { id: seasonId },
     });
     const foundStatus = await this.statusRepository.findOne({
       where: { id: 1 },
     });
 
     const newTournament = this.tournamentRepository.create({
-      category: foundCategory,
-      season: foundSeason,
-      status: foundStatus,
-      ...tournament,
+      // category: foundCategory,
+      // status: foundStatus,
+      // ...tournament,
     });
 
     const saveTournament = await this.tournamentRepository.save(newTournament);

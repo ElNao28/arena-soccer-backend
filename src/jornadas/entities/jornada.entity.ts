@@ -1,3 +1,4 @@
+import { Cancha } from 'src/cancha/entities/cancha.entity';
 import { Game } from 'src/games/entities/game.entity';
 import { Status } from 'src/status/entities/status.entity';
 import { Tournament } from 'src/tournament/entities/tournament.entity';
@@ -9,6 +10,10 @@ export class Jornada {
   id: number;
   @Column()
   name: string;
+  @Column({
+    name: 'day_game'
+  })
+  dateGame:Date;
   @Column()
   statusId: number;
 
@@ -17,6 +22,9 @@ export class Jornada {
 
   @ManyToOne(() => Status, (status) => status.jornada)
   status: Status;
+
+  @ManyToOne(() => Cancha, cancha => cancha.jornadas)
+  cancha: Cancha;
 
   @OneToMany(() => Game, game => game.jornada)
   games: Game[];

@@ -1,4 +1,4 @@
-import { Season } from 'src/season/entities/season.entity';
+import { Tournament } from 'src/tournament/entities/tournament.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('ligas')
@@ -7,9 +7,7 @@ export class Liga {
   id: number;
   @Column()
   name: string;
-  @Column()
-  description: string;
-  
-  @OneToMany(() => Season, (season) => season.id)
-  seasons: Season[];
+
+  @OneToMany(() => Tournament, tournament => tournament.liga)
+  tournaments: Tournament[];
 }

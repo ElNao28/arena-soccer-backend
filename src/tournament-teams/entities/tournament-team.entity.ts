@@ -13,3 +13,4 @@ export class TournamentTeam {
   @ManyToOne(() => Team, (team) => team.tournamentTeams)
   team: Team;
 }
+ 
